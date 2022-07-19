@@ -1,5 +1,6 @@
 #include "./../Includes.h"
 #include <regex>
+string modifyHtmlString(string file_content_line);
 //Reader
 void reader(){
     std::cout << "Test";
@@ -16,46 +17,9 @@ void reader(){
             string file_content = "";
             
             while(getline(file, read)){
-                if(read.size() >= 1){
-                    
-                    for(int i = 0; i < read.size()-1; i++){
-
-                        if(read[i] == read[i+1] /*&& regex_search(read, regexExp) == false*/ ){
-                            counter++;
-
-                        }
-                    }
-                }
-                switch(counter) {
-                    case 1:
-                        file_content = "<h1>" + read + "</h1>" + "</br>" + "\n";
-                        //cout << "Case 1 " << file_content << endl;
-                        break;
-                    case 2:
-                        file_content = "<h2>" + read + "</h2>" + "</br>" + "\n";
-                        //cout << "Case 2 " << file_content << endl;
-                        break;
-                    case 3:
-                        file_content = "<h3>" + read + "</h3>" + "</br>" + "\n";
-                        //cout << "Case 3 " << file_content << endl;
-                        break;
-                    case 4:
-                        file_content = "<h4>" + read + "</h4>" + "</br>" + "\n";
-                        //cout << "Case 4 " << file_content << endl;
-                        break;
-                    case 5:
-                        file_content = "<h5>" + read + "</h5>" + "</br>" + "\n";
-                        //cout << "Case 5 " << file_content << endl;
-                        break;
-                    case 6:
-                        file_content = "<h6>" + read + "</h6>" + "</br>" + "\n";
-                        //cout << "Case 6 " << file_content << endl;
-                        break;
-                    default:
-                        file_content = read + "</br>" + "\n";
-                        //cout << "Case default " << file_content << endl;
-                }
-                counter = 1;
+                cout << "Read size: " << read.size();
+                
+                file_content = modifyHtmlString(read);
                 //file_content = read; 
                 cout << file_content << endl;
                 newFile << file_content;
@@ -80,4 +44,60 @@ void reader(){
         }
     } catch (exception e){
     }
+}
+
+/***
+ * Read current line and modify string from .md to .html
+ * 
+ * @param string file_content_line
+ * 
+ * @return string
+ * */
+
+string modifyHtmlString(string file_content_line) {
+    int counter = 1;
+    string file_content = "";
+    if(file_content_line.size() >= 1 && file_content_line[0] == '#'){         
+        for(int i = 0; i < file_content_line.size()-1; i++){
+
+            if(file_content_line[i] == file_content_line[i+1] /*&& regex_search(read, regexExp) == false*/ ){
+                counter++;
+
+            }
+        }
+    }
+    // remove '#' from current line
+    file_content_line.erase(0, counter);
+    
+    switch(counter) {
+        case 1:
+            file_content = "<h1>" + file_content_line + "</h1>" + "</br>" + "\n";
+            //cout << "Case 1 " << file_content << endl;
+            break;
+        case 2:
+            file_content = "<h2>" + file_content_line + "</h2>" + "</br>" + "\n";
+            //cout << "Case 2 " << file_content << endl;
+            break;
+        case 3:
+            file_content = "<h3>" + file_content_line + "</h3>" + "</br>" + "\n";
+            //cout << "Case 3 " << file_content << endl;
+            break;
+        case 4:
+            file_content = "<h4>" + file_content_line + "</h4>" + "</br>" + "\n";
+            //cout << "Case 4 " << file_content << endl;
+            break;
+        case 5:
+            file_content = "<h5>" + file_content_line + "</h5>" + "</br>" + "\n";
+            //cout << "Case 5 " << file_content << endl;
+            break;
+        case 6:
+            file_content = "<h6>" + file_content_line + "</h6>" + "</br>" + "\n";
+            //cout << "Case 6 " << file_content << endl;
+            break;
+        default:
+            file_content = file_content_line + "</br>" + "\n";
+            //cout << "Case default " << file_content << endl;
+    }
+
+    return file_content;
 }
