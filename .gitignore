@@ -1,2 +1,4 @@
-output.html
-Parser
+./output.html
+./Parser
+./.vscode
+./markdown.md
