@@ -1,9 +1,10 @@
 #include "./../Includes.h"
 #include <regex>
 string modifyHtmlString(string file_content_line);
+string modifyHtmlHeadings(string file_content_line);
 //Reader
 void reader(){
-    std::cout << "Test";
+
     fstream newFile;
     newFile.open("output.html", ios::out);
     regex regexExp("[a-zA-Z0-9]*");
@@ -57,6 +58,30 @@ void reader(){
 string modifyHtmlString(string file_content_line) {
     int counter = 1;
     string file_content = "";
+    char c = file_content_line[0];
+    if(!(c == '#')){
+
+    }
+    
+    switch(c){
+        case '#':
+            file_content = modifyHtmlHeadings(file_content_line);
+            break;
+        case '_':
+        
+            regex rgx("[^_]+");
+            smatch m;
+            regex_search(file_content_line, m, rgx);
+            for(auto x : m){
+                cout << x << endl;
+                file_content += x;
+            }
+            
+            file_content = "<i>" + file_content + "</i> </br>" + "\n";
+            
+            
+
+    }
     if(file_content_line.size() >= 1 && file_content_line[0] == '#'){         
         for(int i = 0; i < file_content_line.size()-1; i++){
 
@@ -67,7 +92,7 @@ string modifyHtmlString(string file_content_line) {
         }
     }
     // remove '#' from current line
-    file_content_line.erase(0, counter);
+    /*file_content_line.erase(0, counter);
     
     switch(counter) {
         case 1:
@@ -97,7 +122,29 @@ string modifyHtmlString(string file_content_line) {
         default:
             file_content = file_content_line + "</br>" + "\n";
             //cout << "Case default " << file_content << endl;
+    } */
+
+    return file_content;
+}
+
+string modifyHtmlHeadings(string file_content_line) {
+
+    int counter = 0;
+    string file_content = "";
+        
+    while(file_content_line[counter] == '#'){
+        counter++;
     }
+    //add +1 for <h> tag
+    // remove '#' from current line
+    file_content_line.erase(0, counter);
+    file_content = "<h" + to_string(counter) + ">" + file_content_line + "</h" + to_string(counter) + ">" + "</br>" + "\n";
+    return file_content;
+}
+
+string modifyHtmlItalic(string file_content_line) {
+    string file_content = "";
+    size_t found;
 
     return file_content;
 }
