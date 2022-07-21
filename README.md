@@ -34,23 +34,23 @@ To follow Definitions, first it is written an '-' than a whitespaces and everyth
 
 ### Headings
 
-- \# CONTENT  \         = <h1></h1>
-- \## CONTENT  \        = <h2></h2>
-- \### CONTENT  \       = <h3></h3>
-- \#### CONTENT  \      = <h4></h4>
-- \##### CONTENT  \     = <h5></h5>
-- \###### CONTENT  \    = <h6></h6>
+- \\# CONTENT  \         = <h1></h1>
+- \\## CONTENT  \        = <h2></h2>
+- \\### CONTENT  \       = <h3></h3>
+- \\#### CONTENT  \      = <h4></h4>
+- \\##### CONTENT  \     = <h5></h5>
+- \\###### CONTENT  \    = <h6></h6>
 
 ### Bold  
-- \**CONTENT**\         = <strong>CONTENT</strong>  
+- \\**CONTENT**\         = <strong>CONTENT</strong>  
 
 ### Italic  
-- \_CONTENT_\           = <i>CONTENT</i>  
+- \\_CONTENT_\           = <i>CONTENT</i>  
 
 ### Mixed Italic + Bold  
-- \**_CONTENT_**\       = <strong><i>CONTENT</i></strong>  
+- \\**_CONTENT_**\       = <strong><i>CONTENT</i></strong>  
 
 ### Linebreaks
-- \CONTENT  \           = CONTENT</br>  
+- \\CONTENT  \           = CONTENT</br>  
 
 ### LINKS
