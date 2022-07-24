@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <regex>
+#include <vector>
 
 using namespace std;
 
